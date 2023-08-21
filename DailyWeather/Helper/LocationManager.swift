@@ -8,18 +8,29 @@
 import CoreLocation
 import UIKit
 
+typealias LocationPermissionClosure = (CLAuthorizationStatus) -> Void
+
 class MyLocationManager : NSObject{
     
     static let shared = MyLocationManager()
-    var locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
     var completion : ((CLLocation) -> Void)?
+    var permissionUpdateClosure : LocationPermissionClosure?
     
-    public func getUserLocation(completion: @escaping (CLLocation) -> Void){
-        self.completion = completion
+    override init() {
+        super.init()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    public func getUserLocation(completion: @escaping (CLLocation) -> Void){
+        self.completion = completion
+    }
+    
+    public func onPermissionUpdate(_ closure : @escaping LocationPermissionClosure){
+        permissionUpdateClosure = closure
     }
 }
 
@@ -29,7 +40,10 @@ extension MyLocationManager : CLLocationManagerDelegate {
             return
         }
         completion?(location)
-        manager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        permissionUpdateClosure?(status)
     }
 }
 

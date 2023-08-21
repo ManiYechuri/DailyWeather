@@ -44,7 +44,7 @@ final class DailyWeatherTests: XCTestCase {
     
     func testGetCurrentWeatherDataIsNil(){
         MyLocationManager.shared.getUserLocation { location in
-            self.viewModel?.fetchCurrentWeather(latitude: "", longitude: "")
+            self.viewModel?.fetchCurrentWeather(latitude: "\(location.coordinate.latitude)", longitude: "\(location.coordinate.longitude)")
         }
         let expect = XCTestExpectation(description: "apiCallback")
         

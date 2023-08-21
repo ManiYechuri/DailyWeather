@@ -42,13 +42,22 @@ class Helper {
             return UIApplication.shared.delegate as! AppDelegate
         }
     }
-    
-    func showAlert(title : String, message : String, viewController : UIViewController) {
+    func showInternetError(title : String, message : String,viewController : UIViewController) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "Settings", style: .default) { action in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: nil)
+            }
+        }
         alertController.addAction(okAction)
-        viewController.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            viewController.present(alertController, animated: true, completion: nil)
+        }
     }
+    
 }
 
 extension UIColor {
