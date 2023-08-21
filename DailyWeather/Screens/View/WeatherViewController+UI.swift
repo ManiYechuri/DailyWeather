@@ -63,7 +63,7 @@ extension WeatherViewController {
                 self.labelTemperature.text = WeatherCondition.Clear.rawValue
             }
             self.labelCurrentTemperature.text = Helper.shared.convertKelvinToCelsius(temp: currentWeather.main?.temp ?? 0.0, from: .kelvin, to: .celsius)
-            self.labelMaximumTemperature.text = "Max :" + Helper.shared.convertKelvinToCelsius(temp: currentWeather.main?.temp_max ?? 0.0, from: .kelvin, to: .celsius)
+            self.labelMaximumTemperature.text = "Max : " + Helper.shared.convertKelvinToCelsius(temp: currentWeather.main?.temp_max ?? 0.0, from: .kelvin, to: .celsius)
             self.labelMinimumTemperature.text = "Min : " + Helper.shared.convertKelvinToCelsius(temp: currentWeather.main?.temp_min ?? 0.0, from: .kelvin, to: .celsius)
             self.labelWeekDay.text = Helper.shared.getWeekdayFromDate(Date(timeIntervalSince1970: TimeInterval(currentWeather.dt))) + " at " + Date.getCurrentDate()
         }

@@ -9,6 +9,7 @@ import UIKit
 
 class WeatherTableCell: UITableViewCell {
 
+    @IBOutlet weak var labelTime: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var labelTemperature: UILabel!
     @IBOutlet weak var labelWeekDay: UILabel!
@@ -33,6 +34,14 @@ class WeatherTableCell: UITableViewCell {
         guard let weatherData else {return}
         weatherIcon.image = UIImage(named: weatherData.image)
         labelTemperature.text = weatherData.degree
+        labelTime.text = self.getCurrentTime(date: weatherData.date)
         labelWeekDay.text = weatherData.weekday
+    }
+    
+    func getCurrentTime(date : Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        return dateFormatter.string(from: date)
+        
     }
 }
