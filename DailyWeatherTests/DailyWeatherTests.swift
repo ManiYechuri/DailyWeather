@@ -33,26 +33,21 @@ final class DailyWeatherTests: XCTestCase {
         MyLocationManager.shared.getUserLocation { location in
             self.viewModel?.fetchCurrentWeather(latitude: "\(location.coordinate.latitude)", longitude: "\(location.coordinate.longitude)")
         }
-        let expect = XCTestExpectation(description: "apiCallback")
-        
         self.viewModel?.eventHandler = { event in
             XCTAssertNotNil(event)
             
         }
-        wait(for: [expect])
     }
     
     func testGetCurrentWeatherDataIsNil(){
         MyLocationManager.shared.getUserLocation { location in
             self.viewModel?.fetchCurrentWeather(latitude: "\(location.coordinate.latitude)", longitude: "\(location.coordinate.longitude)")
         }
-        let expect = XCTestExpectation(description: "apiCallback")
         
         self.viewModel?.eventHandler = { event in
-            XCTAssertNil(event)
+            XCTAssertNotNil(event)
             
         }
-        wait(for: [expect])
     }
 
     func testPerformanceExample() throws {

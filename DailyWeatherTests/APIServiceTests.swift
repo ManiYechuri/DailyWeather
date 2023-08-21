@@ -42,7 +42,7 @@ final class APIServiceTests: XCTestCase {
                 XCTAssertTrue(true)
             }
         }
-        wait(for: [expect])
+        wait(for: [expect], timeout: 10.0)
     }
     
     func testForecastWeatherAPI(){
@@ -59,7 +59,7 @@ final class APIServiceTests: XCTestCase {
                 XCTAssertTrue(true)
             }
         }
-        wait(for: [expect])
+        wait(for: [expect], timeout: 5.0)
     }
     
     func testCurrentWeatherJSONProcessing() {
