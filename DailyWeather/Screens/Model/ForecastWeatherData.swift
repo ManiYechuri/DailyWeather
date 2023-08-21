@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ForecastWeatherData : Decodable {
+struct ForecastWeatherData : Codable {
     var cod : String
     var message : Int
     var cnt : Int
@@ -16,7 +16,7 @@ struct ForecastWeatherData : Decodable {
     var city : City
 }
 
-struct List : Decodable {
+struct List : Codable {
     var dt : TimeInterval
     var weather : [Weather]
     var main : Main
@@ -27,7 +27,7 @@ struct List : Decodable {
     var pop : Float
 }
 
-struct City : Decodable {
+struct City : Codable {
     var name : String
     var coord : Coordinates
     var country : String?

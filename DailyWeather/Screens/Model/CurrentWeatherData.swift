@@ -6,7 +6,8 @@
 //
 
 import Foundation
-struct CurrentWeatherData : Decodable {
+
+struct CurrentWeatherData : Codable {
     var coord : Coordinates?
     var weather : [Weather]?
     var base,name : String
@@ -17,30 +18,30 @@ struct CurrentWeatherData : Decodable {
     var sys : System?
 }
 
-struct Coordinates : Decodable {
+struct Coordinates : Codable {
     var lon, lat : Double
 }
 
-struct Weather : Decodable {
+struct Weather : Codable {
     var id : Int
     var main, description, icon  : String
 }
 
-struct Main : Decodable {
+struct Main : Codable {
     var temp,feels_like,temp_min,temp_max : Double
     var pressure, humidity : Int
 }
 
-struct Wind : Decodable {
+struct Wind : Codable {
     var speed : Double
     var deg : Int
     var gust : Double?
 }
-struct Clouds : Decodable {
+struct Clouds : Codable {
     var all : Int
 }
 
-struct System : Decodable {
+struct System : Codable {
     var country : String
     var sunrise,sunset : Int
 }

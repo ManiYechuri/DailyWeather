@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import MapKit
 
 class WeatherViewController: UIViewController {
 
+    @IBOutlet weak var locationView : UIView!
+    @IBOutlet weak var settingaButton : UIButton!
     @IBOutlet weak var currentWeatherView : UIView!
     @IBOutlet weak var forecastTableView : UITableView!
     @IBOutlet weak var labelTemperature: UILabel!
@@ -26,6 +29,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.locationView.isHidden = true
         self.configuration()
     }
     
@@ -36,6 +40,12 @@ class WeatherViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    @IBAction func goToSettings(sender:UIButton){
+        if let appSettingsURL = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(appSettingsURL, options: [:], completionHandler: nil)
+        }
     }
 }
 
@@ -76,14 +86,24 @@ extension WeatherViewController {
     
     func initViewModel(){
         if NetworkMonitor.shared.isConnected {
-            MyLocationManager.shared.getUserLocation { [weak self] location in
-                self?.currentWeatherViewModel.fetchCurrentWeather(latitude: "\(location.coordinate.latitude)", longitude: "\(location.coordinate.longitude)")
-                location.fetchCity { city, error in
-                    self?.labelLocation.text = city ?? ""
+            self.checkLocationAuthorization { isSuccess in
+                if isSuccess {
+                    self.locationView.isHidden = true
+                    self.currentWeatherView.isHidden = false
+                    MyLocationManager.shared.getUserLocation { [weak self] location in
+                        self?.currentWeatherViewModel.fetchCurrentWeather(latitude: "\(location.coordinate.latitude)", longitude: "\(location.coordinate.longitude)")
+                        location.fetchCity { city, error in
+                            self?.labelLocation.text = city ?? ""
+                        }
+                    }
+                }else {
+                    self.locationView.isHidden = false
+                    self.currentWeatherView.isHidden = true
+//                    Helper.shared.navigateUserToDeviceSettings(title: "Location Not found", message: "Please enable location services to get weather data", viewController: self)
                 }
             }
         }else {
-            //show no internet connection alert
+            Helper.shared.showAlert(title: "No Internet", message: "Please make sure you have active internet connection", viewController: self)
         }
     }
     
@@ -96,13 +116,28 @@ extension WeatherViewController {
         currentWeatherView.layer.masksToBounds = false
     }
     
+    func checkLocationAuthorization(completion: (Bool) -> Void) {
+        let locationManager = CLLocationManager()
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse, .authorizedAlways:
+            completion(true)
+        case .denied, .restricted:
+            completion(false)
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            completion(true)
+        @unknown default:
+            fatalError("Unknown authorization status")
+        }
+    }
+    
     func initForecastWeatherModel() {
         if NetworkMonitor.shared.isConnected {
             MyLocationManager.shared.getUserLocation { [weak self] location in
                 self?.forecastWeatherViewModel.fetchForecastWeatherData(latitude: "\(location.coordinate.latitude)", longitude: "\(location.coordinate.longitude)")
             }
         }else {
-            //Show alert for no internet connection
+            Helper.shared.showAlert(title: "No Internet", message: "Please make sure you have active internet connection", viewController: self)
         }
     }
     

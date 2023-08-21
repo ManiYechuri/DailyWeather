@@ -21,6 +21,11 @@ class WeatherDetailsViewController: UIViewController {
     @IBOutlet weak var labelLocation: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.updateWeatherDetailsUI()
+    }
+    
+    func updateWeatherDetailsUI(){
         self.labelLocation.text = forecastWeatherData?.location
         self.labelWeatherCondition.text = forecastWeatherData?.weatherCondition
         self.labelCurrentTemperature.text = forecastWeatherData?.degree

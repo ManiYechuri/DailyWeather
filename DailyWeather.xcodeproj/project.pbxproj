@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B9515702A9003F2001AB475 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B95156E2A9003F2001AB475 /* CurrentWeather.json */; };
-		1B9515712A9003F2001AB475 /* ForecastWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B95156F2A9003F2001AB475 /* ForecastWeather.json */; };
+		1B188EDA2A92811F00A0A017 /* ForecastWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B188ED82A92811F00A0A017 /* ForecastWeather.json */; };
+		1B188EDB2A92811F00A0A017 /* ForecastWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B188ED82A92811F00A0A017 /* ForecastWeather.json */; };
+		1B188EDC2A92811F00A0A017 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B188ED92A92811F00A0A017 /* CurrentWeather.json */; };
+		1B188EDD2A92811F00A0A017 /* CurrentWeather.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B188ED92A92811F00A0A017 /* CurrentWeather.json */; };
 		1B9515732A900919001AB475 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9515722A900919001AB475 /* APIServiceTests.swift */; };
 		1BDAFAD92A8F501C00A9F444 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDAFAD82A8F501C00A9F444 /* AppDelegate.swift */; };
 		1BDAFADB2A8F501C00A9F444 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDAFADA2A8F501C00A9F444 /* SceneDelegate.swift */; };
@@ -59,8 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B95156E2A9003F2001AB475 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = "<group>"; };
-		1B95156F2A9003F2001AB475 /* ForecastWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastWeather.json; sourceTree = "<group>"; };
+		1B188ED82A92811F00A0A017 /* ForecastWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForecastWeather.json; sourceTree = "<group>"; };
+		1B188ED92A92811F00A0A017 /* CurrentWeather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CurrentWeather.json; sourceTree = "<group>"; };
 		1B9515722A900919001AB475 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		1BDAFAD52A8F501C00A9F444 /* DailyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BDAFAD82A8F501C00A9F444 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,15 +124,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B95156D2A9003D5001AB475 /* JSONFiles */ = {
-			isa = PBXGroup;
-			children = (
-				1B95156E2A9003F2001AB475 /* CurrentWeather.json */,
-				1B95156F2A9003F2001AB475 /* ForecastWeather.json */,
-			);
-			path = JSONFiles;
-			sourceTree = "<group>";
-		};
 		1BDAFACC2A8F501C00A9F444 = {
 			isa = PBXGroup;
 			children = (
@@ -154,7 +147,8 @@
 		1BDAFAD72A8F501C00A9F444 /* DailyWeather */ = {
 			isa = PBXGroup;
 			children = (
-				1B95156D2A9003D5001AB475 /* JSONFiles */,
+				1B188ED92A92811F00A0A017 /* CurrentWeather.json */,
+				1B188ED82A92811F00A0A017 /* ForecastWeather.json */,
 				1BDAFB272A8F6F7D00A9F444 /* Fonts */,
 				1BDAFB0A2A8F599700A9F444 /* Application */,
 				1BDAFB0B2A8F59A100A9F444 /* Constants */,
@@ -396,13 +390,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9515712A9003F2001AB475 /* ForecastWeather.json in Resources */,
 				1BDAFAE52A8F501D00A9F444 /* LaunchScreen.storyboard in Resources */,
 				1BDAFB4F2A8F700000A9F444 /* OpenSans-ExtraBold.ttf in Resources */,
-				1B9515702A9003F2001AB475 /* CurrentWeather.json in Resources */,
 				1BDAFB5E2A8F700000A9F444 /* OpenSans-Medium.ttf in Resources */,
+				1B188EDA2A92811F00A0A017 /* ForecastWeather.json in Resources */,
 				1BDAFAE22A8F501D00A9F444 /* Assets.xcassets in Resources */,
 				1BDAFB6B2A8F700000A9F444 /* OpenSans-Light.ttf in Resources */,
+				1B188EDC2A92811F00A0A017 /* CurrentWeather.json in Resources */,
 				1BDAFB752A8F8FF800A9F444 /* WeatherTableCell.xib in Resources */,
 				1BDAFB562A8F700000A9F444 /* OpenSans-Bold.ttf in Resources */,
 				1BDAFB6C2A8F700000A9F444 /* OpenSans-SemiBold.ttf in Resources */,
@@ -415,6 +409,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B188EDD2A92811F00A0A017 /* CurrentWeather.json in Resources */,
+				1B188EDB2A92811F00A0A017 /* ForecastWeather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,7 +628,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -660,7 +656,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
