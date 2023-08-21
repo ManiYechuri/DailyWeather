@@ -163,6 +163,7 @@ extension WeatherViewController {
             case .stopLoading : break
             case .loading : break
             case .dataLoaded :
+                locationManager.locationManager.stopUpdatingLocation()
                 guard let weatherData = self.forecastWeatherViewModel.forecastWeatherData else {return}
                 DispatchQueue.main.async {
                     self.weatherData.removeAll()
